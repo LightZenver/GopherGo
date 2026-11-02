@@ -1,11 +1,30 @@
 {
   "version": 3,
   "targets": {
-    "net8.0": {}
+    "net8.0": {
+      "Burrow.Runtime/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "compile": {
+          "bin/placeholder/Burrow.Runtime.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Burrow.Runtime.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "Burrow.Runtime/1.0.0": {
+      "type": "project",
+      "path": "../Burrow.Runtime/Burrow.Runtime.csproj",
+      "msbuildProject": "../Burrow.Runtime/Burrow.Runtime.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net8.0": []
+    "net8.0": [
+      "Burrow.Runtime >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "/home/pavel/.nuget/packages/": {}
@@ -32,7 +51,11 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "/home/pavel/Документы/GoMobileProject/Burrow/Burrow.Runtime/Burrow.Runtime.csproj": {
+              "projectPath": "/home/pavel/Документы/GoMobileProject/Burrow/Burrow.Runtime/Burrow.Runtime.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
@@ -75,5 +98,13 @@
         "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/10.0.114/PortableRuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1900",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Произошла ошибка при получении данных уязвимости пакета: Не удалось загрузить индекс служб для источника https://api.nuget.org/v3/index.json."
+    }
+  ]
 }

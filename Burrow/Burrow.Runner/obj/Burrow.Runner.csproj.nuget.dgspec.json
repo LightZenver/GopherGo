@@ -26,7 +26,11 @@
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "/home/pavel/Документы/GoMobileProject/Burrow/Burrow.Runtime/Burrow.Runtime.csproj": {
+                "projectPath": "/home/pavel/Документы/GoMobileProject/Burrow/Burrow.Runtime/Burrow.Runtime.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -67,6 +71,69 @@
             }
           },
           "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/10.0.114/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/pavel/Документы/GoMobileProject/Burrow/Burrow.Runtime/Burrow.Runtime.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/pavel/Документы/GoMobileProject/Burrow/Burrow.Runtime/Burrow.Runtime.csproj",
+        "projectName": "Burrow.Runtime",
+        "projectPath": "/home/pavel/Документы/GoMobileProject/Burrow/Burrow.Runtime/Burrow.Runtime.csproj",
+        "packagesPath": "/home/pavel/.nuget/packages/",
+        "outputPath": "/home/pavel/Документы/GoMobileProject/Burrow/Burrow.Runtime/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/pavel/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.0"
+        ],
+        "sources": {
+          "/usr/lib/dotnet/library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.0": {
+            "targetAlias": "netstandard2.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "10.0.100"
+      },
+      "frameworks": {
+        "netstandard2.0": {
+          "targetAlias": "netstandard2.0",
+          "dependencies": {
+            "NETStandard.Library": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.0.3, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/10.0.114/RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -1,0 +1,10 @@
+/home/pavel/Документы/GoMobileProject/Burrow/Burrow.Runtime/obj/Debug/netstandard2.0/Burrow.Runtime.csproj.AssemblyReference.cache
+/home/pavel/Документы/GoMobileProject/Burrow/Burrow.Runtime/obj/Debug/netstandard2.0/Burrow.Runtime.GeneratedMSBuildEditorConfig.editorconfig
+/home/pavel/Документы/GoMobileProject/Burrow/Burrow.Runtime/obj/Debug/netstandard2.0/Burrow.Runtime.AssemblyInfoInputs.cache
+/home/pavel/Документы/GoMobileProject/Burrow/Burrow.Runtime/obj/Debug/netstandard2.0/Burrow.Runtime.AssemblyInfo.cs
+/home/pavel/Документы/GoMobileProject/Burrow/Burrow.Runtime/obj/Debug/netstandard2.0/Burrow.Runtime.csproj.CoreCompileInputs.cache
+/home/pavel/Документы/GoMobileProject/Burrow/Burrow.Runtime/bin/Debug/netstandard2.0/Burrow.Runtime.deps.json
+/home/pavel/Документы/GoMobileProject/Burrow/Burrow.Runtime/bin/Debug/netstandard2.0/Burrow.Runtime.dll
+/home/pavel/Документы/GoMobileProject/Burrow/Burrow.Runtime/bin/Debug/netstandard2.0/Burrow.Runtime.pdb
+/home/pavel/Документы/GoMobileProject/Burrow/Burrow.Runtime/obj/Debug/netstandard2.0/Burrow.Runtime.dll
+/home/pavel/Документы/GoMobileProject/Burrow/Burrow.Runtime/obj/Debug/netstandard2.0/Burrow.Runtime.pdb
