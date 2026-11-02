@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="Burrow.Runner/Burrow.Runner.csproj" />
+  <Project Path="Burrow.Runtime/Burrow.Runtime.csproj" />
+</Solution>
