@@ -2,12 +2,21 @@ namespace Burrow.Runtime
 {
     public enum OpCode
     {
-        PushInt,
-        Add,
-        Substract,
-        Multiply,
-        Divide,
-        Print,
-        Halt
+        // Input
+        PushInt,    // Works
+        PushBool,   // Works
+        Dup,        // Works
+        Swap,       // Works
+        Pop,        // Works
+
+        // Math
+        Add,        // Works
+        Substract,  // Works
+        Multiply,   // Works
+        Divide,     // Works
+
+        // Output
+        Print,      // Works
+        Halt        // Works
     }
 }

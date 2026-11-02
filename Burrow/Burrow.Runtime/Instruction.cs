@@ -2,13 +2,26 @@ namespace Burrow.Runtime
 {
     public class Instruction
     {
-        public OpCode Code {get; private set; }
-        public int Operand {get; private set; }
+        public OpCode Code { get; private set; }
+        public int IntOperand { get; private set; }
+        public bool BoolOperand { get; private set; }
+        public int Address { get; set; }
+
+        public Instruction(OpCode code)
+        {
+            Code = code;
+        }
 
         public Instruction(OpCode code, int operand = 0)
         {
             Code = code;
-            Operand = operand;
-        }   
+            IntOperand = operand;
+        }
+
+        public Instruction(OpCode code, bool operand = false)
+        {
+            Code = code;
+            BoolOperand = operand;
+        }
     }
 }

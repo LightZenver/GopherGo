@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Burrow.Runner")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7b6ccb90b4da33bee70b89ecea523101efa5cf71")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0e28091cc44ee264b4ec34cff2db29a2076ce36d")]
 [assembly: System.Reflection.AssemblyProductAttribute("Burrow.Runner")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Burrow.Runner")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

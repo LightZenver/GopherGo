@@ -1,0 +1,5 @@
+1: PushInt 4
+2: PushInt 5
+3: Add
+4: Print
+5: Halt
