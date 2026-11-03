@@ -76,6 +76,22 @@ namespace Burrow.Runtime
                     if (!bool.TryParse(operandStr, out bool boolVal))
                         throw new GvmParseException(lineNo, rawLine, $"Invalid bool '{operandStr}'");
                     return new Instruction(opcode, boolVal);
+                
+                case OpCode.Jump:
+                case OpCode.JumpIfFalse:
+                case OpCode.JumpIfTrue:
+                    if (operandStr == null)
+                        throw new GvmParseException(lineNo, rawLine, "JUMP requires target address");
+                    if (!int.TryParse(operandStr, NumberStyles.Integer, CultureInfo.InvariantCulture, out int target))
+                        throw new GvmParseException(lineNo, rawLine, $"Invalid JUMP target: '{operandStr}'");
+                    return new Instruction(opcode, target);
+
+                case OpCode.Call:
+                    if (operandStr == null)
+                        throw new GvmParseException(lineNo, rawLine, "CALL requires target address");
+                    if (!int.TryParse(operandStr, NumberStyles.Integer, CultureInfo.InvariantCulture, out int CallTarget))
+                        throw new GvmParseException(lineNo, rawLine, $"Invalid CALL target: {operandStr}");
+                    return new Instruction(opcode, CallTarget);
 
                 default:
                     if (operandStr != null)

@@ -1,5 +1,11 @@
-1: PushInt 4
-2: PushInt 5
-3: Add
+1: PushInt 2
+2: PushInt 1
+3: Call 10
 4: Print
 5: Halt
+
+10: Divide
+11: Return
+
+12: PushInt 111
+13: Print

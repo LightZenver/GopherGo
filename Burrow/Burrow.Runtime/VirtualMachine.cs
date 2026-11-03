@@ -8,17 +8,23 @@ namespace Burrow.Runtime
     {
         private readonly Stack<object> _stack;
         private readonly TextWriter _output;
+        private Stack<int> _callStack = new Stack<int>();
 
         public VirtualMachine(TextWriter output)
         {
             _stack = new Stack<object>();
             _output = output;
+
         }
 
         public void Execute(IList<Instruction> program)
         {
             if (program == null)
                 throw new ArgumentNullException(nameof(program));
+
+            var addressToIndex = new Dictionary<int, int>();
+            for (int i = 0; i < program.Count; i++)
+                addressToIndex[program[i].Address] = i;
 
             _output.WriteLine("===== GVM WORKER =====");
 
@@ -75,9 +81,10 @@ namespace Burrow.Runtime
                         int a = PopInt();
 
                         if (b == 0)
+                        {
                             _stack.Push(0);
                             break;
-
+                        }
                         _stack.Push(a / b);
                         break;
                     }
@@ -116,6 +123,59 @@ namespace Burrow.Runtime
                         break;
                     }
 
+                    // Flow
+                    case OpCode.Jump:
+                    {
+                        if (!addressToIndex.TryGetValue(instruction.IntOperand, out int target))
+                            throw new InvalidOperationException($"Invalid JUMP target: {instruction.IntOperand} not found");
+                        ip = target;
+                        continue;
+                    }
+
+                    case OpCode.JumpIfFalse:
+                    {
+                        bool cond = PopBool();
+                        if (!cond)
+                        {
+                            if (!addressToIndex.TryGetValue(instruction.IntOperand, out int target))
+                                throw new InvalidOperationException($"Invalid JUMP target: {instruction.IntOperand} not found");
+                            ip = target;
+                            continue;
+                        }
+                        break;
+                    }
+
+                    case OpCode.JumpIfTrue:
+                    {
+                        bool cond = PopBool();
+                        if (cond)
+                        {
+                            if (!addressToIndex.TryGetValue(instruction.IntOperand, out int target))
+                                throw new InvalidOperationException($"Invalid JUMP target: {instruction.IntOperand} not found");
+                            ip = target;
+                            continue;
+                        }
+                        break;
+                    }
+
+                    case OpCode.Call:
+                    {
+                        if (!addressToIndex.TryGetValue(instruction.IntOperand, out int target))
+                            throw new InvalidOperationException($"Invalid CALL target: {instruction.IntOperand} not found");
+                        _callStack.Push(ip + 1);
+                        ip = target;
+                        continue;
+                    }
+
+                    case OpCode.Return:
+                    {
+                        if (_callStack.Count == 0)
+                            throw new InvalidOperationException("GVM call stack underflow");
+                        
+                        ip = _callStack.Pop();
+                        continue;
+                    }
+
                     // Output
                     case OpCode.Print:
                     {
@@ -136,7 +196,7 @@ namespace Burrow.Runtime
                 ip++;
             }
 
-            _output.WriteLine("GVM Completed");
+            _output.WriteLine("GVM Completed!");
         }
 
         private object Pop()
