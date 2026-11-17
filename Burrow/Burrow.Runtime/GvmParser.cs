@@ -76,7 +76,19 @@ namespace Burrow.Runtime
                     if (!bool.TryParse(operandStr, out bool boolVal))
                         throw new GvmParseException(lineNo, rawLine, $"Invalid bool '{operandStr}'");
                     return new Instruction(opcode, boolVal);
-                
+
+                case OpCode.PushFloat:
+                    if (operandStr == null)
+                        throw new GvmParseException(lineNo, rawLine, "PushFloat requires float operand");
+                    if (!double.TryParse(operandStr, NumberStyles.Float, CultureInfo.InvariantCulture, out double floatVal))
+                        throw new GvmParseException(lineNo, rawLine, $"Invalid float '{operandStr}'");
+                    return new Instruction(opcode, floatVal);
+
+                case OpCode.PushString:
+                    if (operandStr == null)
+                        throw new GvmParseException(lineNo, rawLine, "PushString requires string operand");
+                    return new Instruction(opcode, operandStr);
+
                 case OpCode.Jump:
                 case OpCode.JumpIfFalse:
                 case OpCode.JumpIfTrue:
@@ -92,6 +104,43 @@ namespace Burrow.Runtime
                     if (!int.TryParse(operandStr, NumberStyles.Integer, CultureInfo.InvariantCulture, out int CallTarget))
                         throw new GvmParseException(lineNo, rawLine, $"Invalid CALL target: {operandStr}");
                     return new Instruction(opcode, CallTarget);
+
+                case OpCode.MakeFunc:
+                case OpCode.MakeClosure:
+                    if (operandStr == null)
+                        throw new GvmParseException(lineNo, rawLine, "FUNC requires target address");
+                    if (!int.TryParse(operandStr, NumberStyles.Integer, CultureInfo.InvariantCulture, out int FuncTarget))
+                        throw new GvmParseException(lineNo, rawLine, $"Invalid MakeFunc target: {operandStr}");
+                    return new Instruction(opcode, FuncTarget);
+
+                case OpCode.GetField:
+                case OpCode.SetField:
+                case OpCode.BindMethod:
+                case OpCode.CallMethod:
+                case OpCode.RefField:
+                    if (operandStr == null)
+                        throw new GvmParseException(lineNo, rawLine, "FIELD requires field name");
+                    return new Instruction(opcode, operandStr);
+
+                case OpCode.StoreLocal:
+                case OpCode.LoadLocal:
+                case OpCode.RefLocal:
+                case OpCode.LoadEnv:
+                    if (operandStr == null)
+                        throw new GvmParseException(lineNo, rawLine, "LOCAL requires local index");
+                    if (!int.TryParse(operandStr, NumberStyles.Integer, CultureInfo.InvariantCulture, out int localIndex))
+                        throw new GvmParseException(lineNo, rawLine, $"Invalid local index: '{operandStr}'");
+                    if (localIndex < 0)
+                        throw new GvmParseException(lineNo, rawLine, $"Local index must be >= 0, got {localIndex}");
+                    return new Instruction(opcode, localIndex);
+
+                case OpCode.Conv:
+                case OpCode.AssertType:
+                    if (operandStr == null)
+                        throw new GvmParseException(lineNo, rawLine, "TYPE requires type operand");
+                    if (!Enum.TryParse<GvmType>(operandStr, ignoreCase: true, out GvmType targetType))
+                        throw new GvmParseException(lineNo, rawLine, $"Unknown type '{operandStr}'");
+                    return new Instruction(opcode, targetType);
 
                 default:
                     if (operandStr != null)
